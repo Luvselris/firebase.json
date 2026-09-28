@@ -668,15 +668,45 @@
     }
     renderReviews();
 
-    // 🌸 ไฮไลท์ไอจี Modal
-    function openHlModal(src) {
-      document.getElementById('hlModalImg').src = src;
-      document.getElementById('hlModal').style.display = 'flex';
-    }
-    function closeHl(e) {
-      if (e.target.id === 'hlModal') document.getElementById('hlModal').style.display = 'none';
-    }
-  </script>
+  // สลับแท็บหน้าเว็บ (Home, Review, Contact, Detail)
+  function switchPage(pageId, btn) {
+    const pages = document.querySelectorAll('.tab-content');
+    pages.forEach(p => {
+      p.style.display = 'none';
+      p.classList.remove('active');
+    });
 
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(b => b.classList.remove('active'));
+
+    const target = document.getElementById(pageId);
+    if (target) {
+      target.style.display = 'block';
+      target.classList.add('active');
+    }
+
+    if (btn) {
+      btn.classList.add('active');
+    }
+  }
+
+  // ไฮไลท์ไอจี Modal
+  function openHlModal(src) {
+    const modalImg = document.getElementById('hlModalImg');
+    const modal = document.getElementById('hlModal');
+    if (modalImg && modal) {
+      modalImg.src = src;
+      modal.style.display = 'flex';
+    }
+  }
+
+  function closeHl(e) {
+    const modal = document.getElementById('hlModal');
+    if (modal && (!e || e.target.id === 'hlModal')) {
+      modal.style.display = 'none';
+    }
+  }
+</script>
 </body>
 </html>
+>
